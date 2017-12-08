@@ -450,7 +450,7 @@ public final class RouteSelectorTest {
   /** Returns an address that's without an SSL socket factory or hostname verifier. */
   private Address httpAddress() {
     return new Address(uriHost, uriPort, dns, socketFactory, null, null, null, authenticator, null,
-        protocols, connectionSpecs, proxySelector);
+        protocols, connectionSpecs, proxySelector, false);
   }
 
   private Address httpsAddress() {
