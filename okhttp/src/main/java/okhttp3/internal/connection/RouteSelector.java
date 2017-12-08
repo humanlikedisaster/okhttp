@@ -176,7 +176,7 @@ public final class RouteSelector {
           + "; port is out of range");
     }
 
-    if (proxy.type() == Proxy.Type.SOCKS) {
+    if (proxy.type() == Proxy.Type.SOCKS || address.useTor()) {
       inetSocketAddresses.add(InetSocketAddress.createUnresolved(socketHost, socketPort));
     } else {
       eventListener.dnsStart(call, socketHost);

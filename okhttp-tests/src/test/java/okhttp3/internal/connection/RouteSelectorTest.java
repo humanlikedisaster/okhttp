@@ -119,7 +119,7 @@ public final class RouteSelectorTest {
     RouteSelector.Selection selection = routeSelector.next();
     Route route = selection.next();
     routeDatabase.failed(route);
-    routeSelector = new RouteSelector(address, routeDatabase, null, EventListener.NONE);
+    routeSelector = new RouteSelector(address, routeDatabase, null, EventListener.NONE, false);
     selection = routeSelector.next();
     assertRoute(selection.next(), address, NO_PROXY, dns.lookup(uriHost, 0), uriPort);
     assertFalse(selection.hasNext());
@@ -140,7 +140,7 @@ public final class RouteSelectorTest {
 
   @Test public void explicitProxyTriesThatProxysAddressesOnly() throws Exception {
     Address address = new Address(uriHost, uriPort, dns, socketFactory, null, null, null,
-        authenticator, proxyA, protocols, connectionSpecs, proxySelector);
+        authenticator, proxyA, protocols, connectionSpecs, proxySelector, false);
     RouteSelector routeSelector = new RouteSelector(address, routeDatabase, null,
         EventListener.NONE);
 
@@ -158,7 +158,7 @@ public final class RouteSelectorTest {
 
   @Test public void explicitDirectProxy() throws Exception {
     Address address = new Address(uriHost, uriPort, dns, socketFactory, null, null, null,
-        authenticator, NO_PROXY, protocols, connectionSpecs, proxySelector);
+        authenticator, NO_PROXY, protocols, connectionSpecs, proxySelector, false);
     RouteSelector routeSelector = new RouteSelector(address, routeDatabase, null,
         EventListener.NONE);
 
@@ -188,7 +188,7 @@ public final class RouteSelectorTest {
     };
 
     Address address = new Address(uriHost, uriPort, dns, socketFactory, null, null, null,
-        authenticator, null, protocols, connectionSpecs, nullProxySelector);
+        authenticator, null, protocols, connectionSpecs, nullProxySelector, false);
     RouteSelector routeSelector = new RouteSelector(address, routeDatabase, null,
         EventListener.NONE);
     assertTrue(routeSelector.hasNext());
@@ -455,6 +455,6 @@ public final class RouteSelectorTest {
 
   private Address httpsAddress() {
     return new Address(uriHost, uriPort, dns, socketFactory, sslSocketFactory,
-        hostnameVerifier, null, authenticator, null, protocols, connectionSpecs, proxySelector);
+        hostnameVerifier, null, authenticator, null, protocols, connectionSpecs, proxySelector, false);
   }
 }
