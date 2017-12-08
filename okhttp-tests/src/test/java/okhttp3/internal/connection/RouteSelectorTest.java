@@ -119,7 +119,7 @@ public final class RouteSelectorTest {
     RouteSelector.Selection selection = routeSelector.next();
     Route route = selection.next();
     routeDatabase.failed(route);
-    routeSelector = new RouteSelector(address, routeDatabase, null, EventListener.NONE, false);
+    routeSelector = new RouteSelector(address, routeDatabase, null, EventListener.NONE);
     selection = routeSelector.next();
     assertRoute(selection.next(), address, NO_PROXY, dns.lookup(uriHost, 0), uriPort);
     assertFalse(selection.hasNext());

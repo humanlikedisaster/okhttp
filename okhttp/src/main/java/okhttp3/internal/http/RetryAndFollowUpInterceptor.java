@@ -165,7 +165,7 @@ public final class RetryAndFollowUpInterceptor implements Interceptor {
 
       closeQuietly(response.body());
 
-      if (++followUpCount > MAX_FOLLOW_UPS) {
+      if (++followUpCount > MAX_FOLLOW_UPS) {Ø
         streamAllocation.release();
         throw new ProtocolException("Too many follow-up requests: " + followUpCount);
       }
