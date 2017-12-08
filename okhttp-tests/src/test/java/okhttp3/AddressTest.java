@@ -52,14 +52,14 @@ public final class AddressTest {
 
   @Test public void addressToString() throws Exception {
     Address address = new Address("square.com", 80, dns, socketFactory, null, null, null,
-        authenticator, null, protocols, connectionSpecs, proxySelector);
+        authenticator, null, protocols, connectionSpecs, proxySelector, false);
     assertEquals("Address{square.com:80, proxySelector=RecordingProxySelector}",
         address.toString());
   }
 
   @Test public void addressWithProxyToString() throws Exception {
     Address address = new Address("square.com", 80, dns, socketFactory, null, null, null,
-        authenticator, Proxy.NO_PROXY, protocols, connectionSpecs, proxySelector);
+        authenticator, Proxy.NO_PROXY, protocols, connectionSpecs, proxySelector, false);
     assertEquals("Address{square.com:80, proxy=" + Proxy.NO_PROXY + "}", address.toString());
   }
 }
